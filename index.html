@@ -122,6 +122,25 @@
       </div>
     </div>
 
+    <div
+      id="toast"
+      style="
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: green;
+        color: #fff;
+        padding: 12px 20px;
+        border-radius: 8px;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        z-index: 9999;
+        pointer-events: none;
+      "
+    >
+      Item berhasil ditambahkan ke keranjang!
+    </div>
+
     <footer>
       <div class="container">
         <p>&copy; AZYREN</p>
@@ -146,6 +165,16 @@
       const dotContainer = document.getElementById("dotIndicators");
 
       let currentIndex = 0;
+
+      function showToast(message) {
+        const toast = document.getElementById("toast");
+        toast.textContent = message;
+        toast.style.opacity = "1";
+
+        setTimeout(() => {
+          toast.style.opacity = "0";
+        }, 3000); // hilang dalam 3 detik
+      }
 
       // Fungsi untuk memperbarui indikator titik
       function updateDots() {
@@ -320,6 +349,7 @@
         cart.push({ title, price, image });
         localStorage.setItem("cart", JSON.stringify(cart));
         updateCartDisplay();
+        showToast("Item berhasil ditambahkan ke keranjang!");
       }
 
       // Fungsi untuk memperbarui tampilan keranjang
@@ -525,7 +555,16 @@
           game.description; // Tambahkan deskripsi sesuai kebutuhan
         document.getElementById("detailPrice").innerText =
           game.price.toLocaleString();
-        document.getElementById("detailImage").src = game.image;
+        if (game && game.image) {
+          const detailImage = document.getElementById("detailImage");
+          if (detailImage) {
+            detailImage.src = game.image;
+          } else {
+            console.error("Elemen dengan ID 'detailImage' tidak ditemukan.");
+          }
+        } else {
+          console.error("Data 'game.image' tidak tersedia.");
+        }
       }
 
       // Fungsi untuk kembali ke halaman utama dari detail game
@@ -538,14 +577,15 @@
       // Fungsi untuk menambah item ke keranjang dari halaman detail
       function addToCartFromDetail() {
         const gameTitle = document.getElementById("detailTitle").innerText;
+        const gameImage = document.getElementById("detailImage").src;
         const gamePrice = parseInt(
           document
             .getElementById("detailPrice")
             .innerText.replace("Rp ", "")
-            .replace(",", "")
+            .replaceAll(",", "")
         );
 
-        addToCart(gameTitle, gamePrice); // Panggil fungsi addToCart yang sudah ada
+        addToCart(gameTitle, gamePrice, gameImage); // Pastikan addToCart menerima parameter gambar
       }
 
       function updatePaymentMethodSection() {
