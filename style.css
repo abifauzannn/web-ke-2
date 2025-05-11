@@ -1,7 +1,7 @@
 /* RESET DASAR */
 body {
   margin: 0;
-  font-family: sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: white;
   color: black;
 }
@@ -13,16 +13,16 @@ header {
   align-items: center;
   background-color: black;
   padding: 10px 20px;
+  position: sticky;
 }
 
-/* LOGO */
 .logo {
   display: flex;
   align-items: center;
   gap: 10px;
   font-weight: bold;
-  font-size: 20px;
-  color: rgb(255, 255, 255);
+  font-size: 24px;
+  color: white;
 }
 
 .logo img {
@@ -34,75 +34,9 @@ header {
   padding: 3px;
 }
 
-/* TOMBOL DI HEADER */
 .buttons {
   display: flex;
   gap: 10px;
-}
-
-/* TOMBOL LOGIN MODERN */
-.btn-login {
-  background-color: white;
-  color: black;
-  border: 2px solid black;
-  padding: 10px 20px;
-  border-radius: 10px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btn-login:hover {
-  background-color: black;
-  color: white;
-  transform: scale(1.05);
-}
-
-/* TOMBOL KERANJANG */
-.btn-cart {
-  background-color: black;
-  color: white;
-  border: 2px solid white;
-  padding: 10px 20px;
-  border-radius: 10px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btn-logout {
-  background-color: black;
-  color: white;
-  border: 2px solid white;
-  padding: 10px 20px;
-  border-radius: 10px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btn-cart:hover {
-  background-color: white;
-  color: black;
-  transform: scale(1.05);
-}
-
-.btn-checkout {
-  background-color: black;
-  color: white;
-  border: 2px solid white;
-  padding: 10px 20px;
-  border-radius: 10px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 20px; /* Menambahkan jarak atas */
-}
-
-.btn-checkout:hover {
-  background-color: white;
-  color: black;
-  transform: scale(1.05);
 }
 
 /* NAVIGASI */
@@ -131,15 +65,62 @@ nav a {
   padding: 60px 20px;
   text-align: center;
   color: white;
-  transition: background-image 1s ease-in-out;
 }
 
 .hero h1 {
-  font-size: 32px;
-  margin-bottom: 10px;
+  font-size: 48px;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
 }
 
-/* FITUR TELUSURI */
+/* TOMBOL UMUM */
+.btn-login,
+.btn-cart,
+.btn-logout,
+.btn-checkout,
+.search-bar select,
+.search-bar button {
+  border-radius: 10px;
+  font-weight: bold;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-login {
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+}
+
+.btn-login:hover {
+  background-color: black;
+  color: white;
+  transform: scale(1.05);
+}
+
+.btn-cart,
+.btn-logout,
+.btn-checkout {
+  background-color: black;
+  color: white;
+  border: 2px solid white;
+}
+
+.btn-cart:hover,
+.btn-checkout:hover,
+.search-bar select:hover,
+.search-bar button:hover {
+  background-color: white;
+  color: black;
+  transform: scale(1.05);
+}
+
+.btn-checkout {
+  margin-top: 20px;
+}
+
+/* SEARCH BAR */
 .search-bar {
   margin: 20px auto;
   max-width: 600px;
@@ -159,29 +140,10 @@ nav a {
   outline: none;
 }
 
-.search-bar select,
-.search-bar button {
-  background: black;
-  border: 2px solid white;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 20px;
-  margin-left: 10px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.search-bar select:hover,
-.search-bar button:hover {
-  background-color: white;
-  color: black;
-  transform: scale(1.05);
-}
-
-/* DAFTAR GAME MODERN TERPISAH */
+/* GAME LISTING */
 .popular-games {
   padding: 50px 20px;
-  margin: 50px auto 0;
+  margin-top: 50px;
   position: relative;
   z-index: 1;
 }
@@ -195,18 +157,18 @@ nav a {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  padding: 20px;
   justify-content: center;
-  background: #fff;
+  background: white;
+  padding: 20px;
 }
 
 .game-card {
   display: flex;
   flex-direction: column;
-  border: 1px solid #ccc;
-  border-radius: 8px;
   width: 200px;
   padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
   background-color: #f9f9f9;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;
@@ -223,14 +185,13 @@ nav a {
   object-fit: cover;
 }
 
-/* Let the image grow but keep footer at bottom */
 .game-card-footer {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  justify-content: space-between;
   padding: 15px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
 }
 
 .game-price {
@@ -239,7 +200,6 @@ nav a {
   padding-bottom: 20px;
 }
 
-/* Tombol dibungkus agar selalu di bawah */
 .button-group {
   margin-top: auto;
   display: flex;
@@ -263,14 +223,87 @@ nav a {
   background: black;
 }
 
-/* FOOTER */
-footer {
-  background: white;
-  color: black;
-  border-top: 2px solid white;
-  text-align: center;
-  padding: 20px 0;
-  font-size: 14px;
+/* DETAIL PAGE */
+.detail-page {
+  display: flex;
+  padding: 20px;
+}
+
+.detail-container {
+  display: flex;
+  gap: 10px;
+  max-width: 100%;
+}
+
+.detail-image img {
+  max-width: 500px;
+  width: 60%;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.detail-info {
+  margin-top: -20px;
+  max-width: 50%;
+}
+
+.detail-info h2 {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.detail-info p {
+  margin: 20px 0;
+  font-size: 18px;
+}
+
+.detail-price {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+select#paymentMethod {
+  width: 250px;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s;
+}
+
+select#paymentMethod:focus {
+  border-color: black;
+  outline: none;
+  background-color: #fff;
+}
+
+/* CART PAGE */
+.cart-page {
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.cart-item button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.total {
+  font-weight: bold;
+  text-align: right;
+  margin-top: 20px;
 }
 
 /* MODAL LOGIN */
@@ -279,9 +312,9 @@ footer {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
   justify-content: center;
   align-items: center;
   z-index: 999;
@@ -294,6 +327,7 @@ footer {
   width: 90%;
   max-width: 400px;
   text-align: center;
+  position: relative;
 }
 
 .modal-content input {
@@ -313,25 +347,78 @@ footer {
   cursor: pointer;
 }
 
-.dot-indicators {
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* RECEIPT */
+#receiptContent {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
+  margin: 20px;
+  padding: 20px;
+  text-align: left;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+.receipt-header {
   text-align: center;
-  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
-.dot-indicators span {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  background-color: #ddd;
-  border-radius: 50%;
-  margin: 0 5px;
+.receipt-header h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
 }
 
-.dot-indicators .active {
-  background-color: #555;
+.receipt-header p {
+  font-size: 14px;
+  color: #555;
 }
 
-/* ANIMASI SCROLL */
+.receipt-items ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.receipt-items li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin: 10px 0;
+  padding-bottom: 5px;
+  border-bottom: 1px dashed #ccc;
+}
+
+.item-title {
+  font-weight: bold;
+}
+
+.item-price {
+  color: #000;
+}
+
+.receipt-footer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.receipt-footer p {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* ANIMASI */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -353,65 +440,30 @@ footer {
   animation: fadeInUp 0.6s ease forwards;
 }
 
-/* Receipt */
-#receiptContent {
-  font-family: "Courier New", Courier, monospace;
-  font-size: 14px;
-  margin: 20px;
-  text-align: left;
-  color: #333;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  background-color: #f9f9f9;
-}
-
-.receipt-header {
+.dot-indicators {
   text-align: center;
-  margin-bottom: 20px;
+  margin-top: 10px;
 }
 
-.receipt-header h3 {
-  margin: 0;
-  font-size: 18px;
-  font-weight: bold;
+.dot-indicators span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: #ddd;
+  border-radius: 50%;
+  margin: 0 5px;
 }
 
-.receipt-header p {
-  font-size: 14px;
-  color: #555;
+.dot-indicators .active {
+  background-color: #555;
 }
 
-.receipt-items ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.receipt-items li {
-  margin: 10px 0;
-  font-size: 14px;
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px dashed #ccc;
-  padding-bottom: 5px;
-}
-
-.receipt-items .item-title {
-  font-weight: bold;
-}
-
-.receipt-items .item-price {
-  color: #000;
-  font-weight: normal;
-}
-
-.receipt-footer {
+/* FOOTER */
+footer {
+  background: white;
+  color: black;
+  border-top: 2px solid white;
   text-align: center;
-  margin-top: 20px;
-}
-
-.receipt-footer p {
-  font-size: 16px;
-  font-weight: bold;
+  padding: 20px 0;
+  font-size: 14px;
 }
