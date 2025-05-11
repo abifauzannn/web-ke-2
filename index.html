@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AZYREN</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background-color: white;
+        color: black;
+      }
+
+      /* HEADER */
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: black;
+        padding: 10px 20px;
+        position: sticky;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: bold;
+        font-size: 24px;
+        color: rgb(255, 255, 255);
+      }
+
+      .logo img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid white;
+        padding: 3px;
+      }
+
+      .buttons {
+        display: flex;
+        gap: 10px;
+      }
+
+      /* TOMBOL KERANJANG */
+      .btn-cart {
+        background-color: white;
+        color: black;
+        border: 2px solid black;
+        padding: 10px 20px;
+        border-radius: 10px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      /* HERO SECTION */
+      .hero {
+        background-image: linear-gradient(120deg, #727074c7, #1b003ac9),
+          url("Doom The Dark Ages.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        padding: 60px 20px;
+        text-align: center;
+        color: white;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+        font-weight: 600;
+        font-family: "Poppins", sans-serif;
+      }
+
+      /* DAFTAR GAME */
+      .game-grid {
+        display: flex;
+        gap: 30px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .game-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        width: 200px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+      }
+
+      .game-card img {
+        width: 100%;
+        object-fit: cover;
+      }
+
+      .game-card-footer {
+        padding: 15px;
+        text-align: center;
+      }
+
+      .game-price {
+        font-size: 16px;
+        font-weight: bold;
+        margin: 5px 0;
+      }
+
+      /* HALAMAN KERANJANG */
+      .cart-page {
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+
+      .cart-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #ccc;
+      }
+
+      .cart-item button {
+        background-color: red;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .total {
+        font-weight: bold;
+        text-align: right;
+        margin-top: 20px;
+      }
+
+      /* Modal Login */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        position: relative;
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      /* General Styling for the Receipt */
+      #receiptContent {
+        font-family: "Courier New", Courier, monospace;
+        font-size: 14px;
+        margin: 20px;
+        text-align: left;
+        color: #333;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+      }
+
+      .receipt-header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .receipt-header h3 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .receipt-header p {
+        font-size: 14px;
+        color: #555;
+      }
+
+      .receipt-items ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .receipt-items li {
+        margin: 10px 0;
+        font-size: 14px;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px dashed #ccc;
+        padding-bottom: 5px;
+      }
+
+      .receipt-items .item-title {
+        font-weight: bold;
+      }
+
+      .receipt-items .item-price {
+        color: #000;
+        font-weight: normal;
+      }
+
+      .receipt-footer {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .receipt-footer p {
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      /* DETAIL PAGE */
+      .detail-page {
+        display: flex;
+        padding: 20px;
+      }
+
+      .detail-container {
+        display: flex;
+        max-width: 100%;
+        gap: 10px;
+      }
+
+      .detail-image img {
+        max-width: 500px;
+        width: 60%;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .detail-info {
+        margin-top: -20px;
+        max-width: 50%;
+      }
+
+      .detail-info h2 {
+        font-size: 32px;
+        font-weight: bold;
+      }
+
+      .detail-info p {
+        margin: 20px 0;
+        font-size: 18px;
+      }
+
+      .detail-price {
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      select#paymentMethod {
+        width: 250px;
+        padding: 10px;
+        font-size: 16px;
+        border: 2px solid #ccc;
+        border-radius: 6px;
+        background-color: #f9f9f9;
+        transition: border-color 0.3s;
+      }
+
+      select#paymentMethod:focus {
+        border-color: black;
+        outline: none;
+        background-color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header>
+      <div class="logo">
+        <img src="logo web.jpg" alt="ZEUSX" />
+        AZYREN
+      </div>
+      <div class="buttons">
+        <button class="btn-cart" onclick="showCartPage()">Keranjang</button>
+        <button class="btn-login" onclick="toggleModal()">Masuk</button>
+        <button class="btn-logout" onclick="logout()" style="display: none">
+          Logout
+        </button>
+      </div>
+    </header>
+
+    <nav>
+      <a href="#" onclick="backToMainPage()">BERANDA</a>
+      <a href="#daftarGame">DAFTAR GAME</a>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="hero">
+      <h1>AZYREN</h1>
+      <p>AYO MULAI PETUALANGAN TERBARU ANDA</p>
+      <div class="search-bar">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Telusuri menurut game, item, dll..."
+        />
+        <select id="categorySelect">
+          <option value="all">Semua Kategori</option>
+          <option value="action">Aksi</option>
+          <option value="fantasy">Fantasi</option>
+        </select>
+        <button onclick="searchGame()">Cari</button>
+      </div>
+      <div class="dot-indicators" id="dotIndicators"></div>
+    </section>
+
+    <!-- DAFTAR GAME -->
+    <section class="popular-games" id="daftarGame">
+      <h2 style="padding-left: 45px">DAFTAR GAME</h2>
+      <div class="game-grid" id="gameGrid"></div>
+    </section>
+
+    <!-- HALAMAN KERANJANG -->
+    <section class="cart-page" id="cartPage" style="display: none">
+      <h2>Keranjang Anda</h2>
+      <div id="cartItems"></div>
+      <div class="total" id="cartTotal">Total: Rp 0</div>
+      <select id="paymentMethod" style="padding: 8px; margin-top: 10px">
+        <option value="" disabled selected>Pilih Metode Pembayaran</option>
+        <option value="DANA">DANA</option>
+        <option value="GoPay">GoPay</option>
+        <option value="OVO">OVO</option>
+        <option value="ShopeePay">ShopeePay</option>
+      </select>
+      <br />
+      <button class="btn-checkout" onclick="checkout()">Checkout</button>
+      <button class="btn-checkout" onclick="backToMainPage()">
+        Kembali ke Halaman Utama
+      </button>
+    </section>
+
+    <!-- DETAIL GAME PAGE -->
+    <section class="detail-page" id="detailPage" style="display: none">
+      <button
+        onclick="backToMainPageFromDetail()"
+        class="btn-cart"
+        style="margin-bottom: 20px"
+      >
+        Kembali
+      </button>
+      <div class="detail-container">
+        <div class="detail-image">
+          <img id="detailImage" src="" alt="Detail Game" />
+        </div>
+        <div class="detail-info">
+          <h2 id="detailTitle"></h2>
+          <p id="detailDescription"></p>
+          <div class="detail-price">
+            <strong>Harga: Rp <span id="detailPrice"></span></strong>
+          </div>
+          <button class="add-cart-button" onclick="addToCartFromDetail()">
+            Tambah ke Keranjang
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODAL LOGIN -->
+    <div class="modal" id="loginModal">
+      <div class="modal-content">
+        <span class="modal-close" onclick="toggleModal()">X</span>
+        <h3>Login</h3>
+        <input type="email" placeholder="Masukkan Gmail" id="emailInput" />
+        <input type="password" placeholder="Masukkan Password" />
+        <button onclick="login()">Masuk</button>
+      </div>
+    </div>
+
+    <!-- MODAL STRUK PEMBAYARAN -->
+    <div class="modal" id="receiptModal">
+      <div class="modal-content">
+        <span class="modal-close" onclick="closeReceiptModal()">X</span>
+
+        <div id="receiptContent"></div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <p>&copy; AZYREN</p>
+      </div>
+    </footer>
+
+    <script>
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      let isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+      const cartPage = document.getElementById("cartPage");
+      const cartItems = document.getElementById("cartItems");
+      const cartTotal = document.getElementById("cartTotal");
+      const gameGrid = document.getElementById("gameGrid");
+      const heroSection = document.getElementById("hero");
+      const backgrounds = [
+        "url('Doom The Dark Ages.png')",
+        "url('(2)Gears of War.png')",
+        "url('(3)La Quimera.png')",
+        "url('(4)FragPunk.png')",
+        "url('(5)BattleBit Remastered.png')",
+      ];
+      const dotContainer = document.getElementById("dotIndicators");
+
+      let currentIndex = 0;
+
+      // Fungsi untuk memperbarui indikator titik
+      function updateDots() {
+        dotContainer.innerHTML = backgrounds
+          .map(
+            (_, idx) =>
+              `<span class="${idx === currentIndex ? "active" : ""}"></span>`
+          )
+          .join("");
+      }
+
+      // Fungsi untuk mengubah latar belakang
+      function changeBackground() {
+        currentIndex = (currentIndex + 1) % backgrounds.length;
+        heroSection.style.backgroundImage = `linear-gradient(120deg, #260050c7, #1b003ac9), ${backgrounds[currentIndex]}`;
+        updateDots();
+      }
+
+      // Menampilkan titik awal
+      updateDots();
+
+      // Mengubah latar belakang setiap 4 detik
+      setInterval(changeBackground, 4000);
+
+      // Data JSON untuk game
+      const games = [
+        {
+          title: "Doom",
+          price: 1390000,
+          image: "Doom The Dark Ages.png",
+          category: "action",
+          description:
+            "Prekuel dari Doom (2016) dan Doom Eternal, game ini mengusung tema techno-medieval dengan fokus pada pertempuran jarak dekat. Pemain mengendalikan Doom Slayer dalam pertempuran brutal melawan iblis, menggunakan senjata seperti Shield Saw yang dapat digunakan untuk bertahan dan menyerang. Mekanik baru seperti parry dan glory kill yang diperbarui menambah kedalaman strategi dalam pertempuran. Selain itu, pemain dapat mengendarai naga mekanik dan mech raksasa dalam beberapa bagian permainan.",
+          harga: "Rp1.390.000",
+        },
+        {
+          title: "Gears of War",
+          price: 650000,
+          image: "(2)Gears of War.png",
+          category: "action",
+          description:
+            "Remaster dari Gears of War (2006) dengan peningkatan grafis hingga 4K dan 120 FPS. Game ini mempertahankan gameplay third-person shooter taktis dengan sistem cover dan pertarungan brutal. Menampilkan semua konten dari Ultimate Edition, termasuk mode kampanye co-op dua pemain dan multiplayer delapan pemain.",
+          harga: "Rp650.000",
+        },
+        {
+          title: "La Quimera",
+          price: 700000,
+          image: "(3)La Quimera.png",
+          category: "fantasy",
+          description:
+            "FPS naratif dengan elemen co-op opsional, dikembangkan oleh Reburn. Pemain menggunakan exoskeleton yang dapat disesuaikan untuk menghadapi berbagai faksi musuh, dari perampok agresif hingga elit berlapis baja. AI asisten pribadi membantu dalam strategi dan eksplorasi.",
+          harga: "Rp700.000",
+        },
+        {
+          title: "FragPunk",
+          price: 0,
+          image: "(4)FragPunk.png",
+          category: "action",
+          description:
+            "Hero shooter free-to-play dengan sistem 'Shard Card' unik yang mempengaruhi gameplay setiap ronde. Pemain memilih karakter dengan kemampuan khusus dan bertarung dalam mode utama 'Shard Clash', di mana tim menyerang atau bertahan untuk menanam atau menjinakkan Converter. Game ini menawarkan berbagai mode tambahan seperti Team Deathmatch dan Capture The Core.",
+          harga: "Gratis",
+        },
+        {
+          title: "BattleBit",
+          price: 230000,
+          image: "(5)BattleBit Remastered.png",
+          category: "action",
+          description:
+            "FPS multipemain masif dengan gaya visual low-poly, memungkinkan hingga 254 pemain dalam satu pertandingan. Game ini menekankan kerja tim dengan sistem kelas karakter, lingkungan yang dapat dihancurkan, dan berbagai kendaraan militer. Meskipun grafisnya sederhana, gameplay-nya yang mendalam dan fokus pada kerja sama mendapat pujian.",
+          harga: "Rp230.000",
+        },
+        {
+          title: "Valorant",
+          price: 0,
+          image: "(6)valo.png",
+          category: "action",
+          description:
+            "FPS taktis 5v5 dari Riot Games yang menggabungkan keterampilan menembak presisi dengan kemampuan unik dari setiap agen. Game ini terus berkembang dengan pembaruan rutin, termasuk peta, agen, dan acara esports seperti Masters Toronto. Mode utama 'Plant/Defuse' menekankan kerja tim dan strategi.",
+          harga: "Gratis",
+        },
+        {
+          title: "Firebreak",
+          price: 875000,
+          image: "(7)FBC Firebreak.png",
+          category: "action",
+          description:
+            "Co-op FPS yang berlatar di markas besar Federal Bureau of Control yang diserang oleh kekuatan supranatural. Pemain menjadi bagian dari unit Firebreak, bertugas mengatasi krisis aneh dan mengembalikan ketertiban. Game ini menawarkan pengalaman bermain kooperatif yang intens dengan berbagai misi dan tantangan.",
+          harga: "Rp875.000",
+        },
+        {
+          title: "System Shock",
+          price: 600000,
+          image: "(8)System Shock.png",
+          category: "fantasy",
+          description:
+            "Remake dari game klasik 1994, dikembangkan oleh Nightdive Studios. Pemain berperan sebagai hacker yang mencoba menghentikan AI jahat SHODAN di stasiun luar angkasa Citadel. Game ini menggabungkan eksplorasi, pemecahan teka-teki, dan pertarungan dalam setting cyberpunk. Dirilis untuk Windows pada 30 Mei 2023 dan untuk konsol pada 21 Mei 2024.",
+          harga: "Rp600.000",
+        },
+        {
+          title: "Wrath",
+          price: 375000,
+          image: "(9)Wrath Aeon of Ruin.png",
+          category: "fantasy",
+          description:
+            "FPS retro yang dibangun menggunakan mesin Quake asli, menawarkan gameplay cepat dan brutal yang terinspirasi dari Doom dan Hexen. Pemain menjelajahi tiga hub dunia dengan total 15 level, menghadapi berbagai musuh dan bos. Game ini menambahkan elemen RPG ringan dan sistem penyimpanan berbasis 'Soul Tethers'.",
+          harga: "Rp375.000",
+        },
+        {
+          title: "Witchfire",
+          price: 575000,
+          image: "(10)Witchfire.jpg",
+          category: "fantasy",
+          description:
+            "FPS dark fantasy dengan elemen roguelite, di mana pemain berperan sebagai 'preyer' yang memburu penyihir. Game ini menggabungkan pertarungan berbasis senjata dan sihir, dengan eksplorasi bioma yang luas dan sistem pertarungan yang menantang. Dirilis dalam Early Access pada 23 September 2024.",
+          harga: "Rp575.000",
+        },
+      ];
+
+      // Fungsi untuk menampilkan daftar game
+      // Mengupdate tampilan daftar game untuk menambahkan tombol detail
+      function displayGames() {
+        gameGrid.innerHTML = ""; // Kosongkan grid
+        games.forEach((game) => {
+          const gameCard = document.createElement("div");
+          gameCard.classList.add("game-card");
+          gameCard.innerHTML = `
+  <img src="${game.image}" alt="${game.title}" />
+  <div class="game-card-footer">
+    <div>${game.title}</div>
+    <div class="game-price">${
+      game.price === 0 ? "Gratis" : "Rp " + game.price.toLocaleString()
+    }</div>
+    <div class="button-group">
+      <button class="fav-button">Detail</button>
+      <button class="add-cart-button" onclick="addToCart('${game.title}', ${
+            game.price
+          }, '${game.image}')">Tambah Keranjang</button>
+    </div>
+  </div>
+`;
+
+          // Tambahkan event listener untuk tombol Detail
+          gameCard
+            .querySelector(".fav-button")
+            .addEventListener("click", () => showDetailPage(game));
+
+          gameGrid.appendChild(gameCard);
+        });
+      }
+
+      // Fungsi login
+      function login() {
+        const email = document.getElementById("emailInput").value;
+        if (email.includes("@gmail.com")) {
+          isLoggedIn = true;
+          localStorage.setItem("isLoggedIn", "true");
+          alert("Login berhasil!");
+          toggleModal();
+          updateLoginStatus();
+        } else {
+          alert("Email tidak valid. Pastikan email mengandung '@'.");
+        }
+      }
+
+      // Fungsi untuk menambah item ke keranjang
+      function addToCart(title, price, image) {
+        if (!isLoggedIn) {
+          alert("Anda perlu login terlebih dahulu.");
+          toggleModal();
+          return;
+        }
+        cart.push({ title, price, image });
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartDisplay();
+      }
+
+      // Fungsi untuk memperbarui tampilan keranjang
+      function updateCartDisplay() {
+        const cartCount = isLoggedIn ? cart.length : 0; // Jika sudah logout, jumlah keranjang menjadi 0
+        document.querySelector(".btn-cart").textContent = `Keranjang${
+          cartCount > 0 ? ` (${cartCount})` : ""
+        }`;
+        updateCartPage();
+      }
+
+      // Fungsi untuk memperbarui halaman keranjang
+      function updateCartPage() {
+        cartItems.innerHTML = "";
+        let total = 0;
+        cart.forEach((item, index) => {
+          const itemElement = document.createElement("div");
+          itemElement.classList.add("cart-item");
+          itemElement.innerHTML = `
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <img src="${item.image}" alt="${
+            item.title
+          }" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;">
+              <span>${item.title} - Rp ${item.price.toLocaleString()}</span>
+            </div>
+            <button onclick="removeFromCart(${index})">Hapus</button>
+          `;
+          cartItems.appendChild(itemElement);
+          total += item.price;
+        });
+        cartTotal.innerText = `Total: Rp ${total.toLocaleString()}`;
+      }
+
+      // Fungsi untuk menghapus item dari keranjang
+      function removeFromCart(index) {
+        cart.splice(index, 1);
+        localStorage.setItem("cart", JSON.stringify(cart)); // Simpan perubahan ke localStorage
+        updateCartDisplay();
+      }
+
+      // Menampilkan halaman keranjang
+      function showCartPage() {
+        document.getElementById("daftarGame").style.display = "none";
+        document.getElementById("hero").style.display = "none"; // Sembunyikan hero section
+        cartPage.style.display = "block";
+        updatePaymentMethodSection;
+      }
+
+      // Kembali ke halaman utama
+      function backToMainPage() {
+        document.getElementById("hero").style.display = "block"; // Sembunyikan hero section
+        document.getElementById("daftarGame").style.display = "block";
+        cartPage.style.display = "none";
+      }
+
+      // Fungsi checkout
+      function checkout() {
+        const paymentMethod = document.getElementById("paymentMethod").value;
+
+        // Cek apakah keranjang kosong
+        if (cart.length === 0) {
+          alert(
+            "Keranjang belanja kosong. Silakan tambahkan barang terlebih dahulu."
+          );
+          return;
+        }
+
+        // Cek apakah metode pembayaran belum dipilih
+        if (!paymentMethod) {
+          alert("Silakan pilih metode pembayaran terlebih dahulu.");
+          return;
+        }
+
+        let total = cart.reduce((sum, item) => sum + item.price, 0);
+        const receiptContent = document.getElementById("receiptContent");
+
+        receiptContent.innerHTML = `
+          <div class="receipt-header">
+            <h3>Struk Pembayaran</h3>
+            <p>Metode Pembayaran: <strong>${paymentMethod}</strong></p>
+          </div>
+          <div class="receipt-items">
+            <ul>
+              ${cart
+                .map(
+                  (item) =>
+                    `<li><span class="item-title">${
+                      item.title
+                    }</span> - <span class="item-price">Rp ${item.price.toLocaleString()}</span></li>`
+                )
+                .join("")}
+            </ul>
+          </div>
+          <div class="receipt-footer">
+            <p><strong>Total Bayar: Rp ${total.toLocaleString()}</strong></p>
+          </div>
+        `;
+
+        // Tampilkan modal struk
+        document.getElementById("receiptModal").style.display = "flex";
+
+        // Reset keranjang
+        cart = [];
+        localStorage.setItem("cart", JSON.stringify(cart)); // Reset ke localStorage
+        updateCartDisplay();
+        cartPage.style.display = "none";
+      }
+
+      function closeReceiptModal() {
+        document.getElementById("receiptModal").style.display = "none";
+      }
+
+      // Modal login toggle
+      function toggleModal() {
+        const modal = document.getElementById("loginModal");
+        modal.style.display = modal.style.display === "flex" ? "none" : "flex";
+      }
+
+      // Fungsi logout
+      function logout() {
+        isLoggedIn = false;
+        cart = []; // Kosongkan keranjang saat logout
+        localStorage.setItem("isLoggedIn", "false");
+        localStorage.setItem("cart", JSON.stringify(cart)); // Simpan perubahan ke localStorage
+        updateCartDisplay();
+        updateLoginStatus();
+        updatePaymentMethodSection;
+        alert("Anda berhasil logout!");
+      }
+
+      // Fungsi untuk memperbarui status login di UI
+      function updateLoginStatus() {
+        const logoutButton = document.querySelector(".btn-logout");
+        const loginButton = document.querySelector(".btn-login");
+
+        if (isLoggedIn) {
+          logoutButton.style.display = "inline-block";
+          loginButton.style.display = "none";
+        } else {
+          logoutButton.style.display = "none";
+          loginButton.style.display = "inline-block";
+        }
+      }
+
+      // Menampilkan game
+      displayGames();
+      updateLoginStatus();
+
+      function searchGame() {
+        const input = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+        const category = document.getElementById("categorySelect").value;
+        const filteredGames = games.filter((game) => {
+          const isInCategory = category === "all" || game.category === category;
+          const isInSearch = game.title.toLowerCase().includes(input);
+          return isInCategory && isInSearch;
+        });
+        gameGrid.innerHTML = "";
+        filteredGames.forEach((game) => {
+          const gameCard = document.createElement("div");
+          gameCard.classList.add("game-card");
+          gameCard.innerHTML = `
+            <img src="${game.image}" alt="${game.title}" />
+            <div class="game-card-footer">
+              <div>${game.title}</div>
+              <div class="game-price">Rp ${game.price.toLocaleString()}</div>
+              <button class="fav-button" onclick="addToCart('${game.title}', ${
+            game.price
+          })">
+                Detail
+              </button>
+              <button class="add-cart-button" onclick="addToCart('${
+                game.title
+              }', ${game.price})">
+                Tambah Keranjang
+              </button>
+            </div>
+          `;
+          gameGrid.appendChild(gameCard);
+        });
+      }
+
+      // Fungsi untuk menampilkan halaman detail game
+      function showDetailPage(game) {
+        document.getElementById("hero").style.display = "none"; // Sembunyikan hero section
+        document.getElementById("daftarGame").style.display = "none"; // Sembunyikan daftar game
+        document.getElementById("detailPage").style.display = "block"; // Tampilkan halaman detail
+
+        // Update konten detail game
+        document.getElementById("detailTitle").innerText = game.title;
+        document.getElementById("detailDescription").innerText =
+          game.description; // Tambahkan deskripsi sesuai kebutuhan
+        document.getElementById("detailPrice").innerText =
+          game.price.toLocaleString();
+        document.getElementById("detailImage").src = game.image;
+      }
+
+      // Fungsi untuk kembali ke halaman utama dari detail game
+      function backToMainPageFromDetail() {
+        document.getElementById("hero").style.display = "block"; // Tampilkan hero section
+        document.getElementById("daftarGame").style.display = "block"; // Tampilkan daftar game
+        document.getElementById("detailPage").style.display = "none"; // Sembunyikan halaman detail
+      }
+
+      // Fungsi untuk menambah item ke keranjang dari halaman detail
+      function addToCartFromDetail() {
+        const gameTitle = document.getElementById("detailTitle").innerText;
+        const gamePrice = parseInt(
+          document
+            .getElementById("detailPrice")
+            .innerText.replace("Rp ", "")
+            .replace(",", "")
+        );
+
+        addToCart(gameTitle, gamePrice); // Panggil fungsi addToCart yang sudah ada
+      }
+
+      function updatePaymentMethodSection() {
+        const section = document.getElementById("paymentMethod");
+        if (isLoggedIn) {
+          section.innerHTML = `
+            <label for="payment-method">Metode Pembayaran:</label>
+            <select id="payment-method" required>
+              <option value="dana">DANA</option>
+              <option value="gopay">GoPay</option>
+              <option value="ovo">OVO</option>
+              <option value="bank">Transfer Bank</option>
+            </select>
+          `;
+        } else {
+          section.innerHTML = `
+            <p><strong>Metode Pembayaran</strong></p>
+            <p>Anda harus login untuk memilih metode pembayaran.</p>
+          `;
+        }
+      }
+
+      window.onload = () => {
+        updateCartDisplay();
+        updateCartPage(); // Memperbarui halaman keranjang saat halaman dimuat
+      };
+    </script>
+  </body>
+</html>
