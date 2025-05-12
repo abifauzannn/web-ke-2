@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AZYREN - Checkout</title>
+    <title>AZYREN - Belanja</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
       rel="stylesheet"
@@ -42,22 +42,39 @@
       <a href="shop.html">BELANJA</a>
     </nav>
 
-    <section class="cart-page" id="cartPage">
-      <h2>Keranjang Anda</h2>
-      <div id="cartItems"></div>
-      <div class="total" id="cartTotal">Total: Rp 0</div>
-      <select id="paymentMethod" style="padding: 8px; margin-top: 10px">
-        <option value="" disabled selected>Pilih Metode Pembayaran</option>
-        <option value="DANA">DANA</option>
-        <option value="GoPay">GoPay</option>
-        <option value="OVO">OVO</option>
-        <option value="ShopeePay">ShopeePay</option>
+    <div class="search-bar" id="searchBar">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Telusuri menurut game, item, dll..."
+      />
+      <select id="categorySelect">
+        <option value="all">Semua Kategori</option>
+        <option value="action">Aksi</option>
+        <option value="fantasy">Fantasi</option>
       </select>
-      <br />
-      <button class="btn-checkout" onclick="checkout()">Checkout</button>
-      <button class="btn-checkout" onclick="window.location.href='shop.html'">
-        Kembali Belanja
-      </button>
+      <button onclick="searchGame()" style="margin-left: 10px">Cari</button>
+    </div>
+
+    <section class="shop" id="shop">
+      <div class="game-grid" id="gameGrid"></div>
+      <div class="detail-page" id="detailPage" style="display: none">
+        <div class="detail-container">
+          <div class="detail-image">
+            <img id="detailImage" src="" alt="Detail Game" />
+          </div>
+          <div class="detail-info">
+            <h2 id="detailTitle"></h2>
+            <p id="detailDescription"></p>
+            <div class="detail-price">
+              <strong>Harga: Rp <span id="detailPrice"></span></strong>
+            </div>
+            <button class="add-cart-button" onclick="addToCartFromDetail()">
+              Tambah ke Keranjang
+            </button>
+          </div>
+        </div>
+      </div>
     </section>
 
     <div
@@ -79,13 +96,12 @@
       Item berhasil ditambahkan ke keranjang!
     </div>
 
-    <footer style="position: fixed">
+    <footer>
       <div class="container">
         <p>© AZYREN</p>
       </div>
     </footer>
 
     <script src="script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   </body>
 </html>
