@@ -431,15 +431,6 @@ function showDetailPage(title) {
   }
 }
 
-function backToShop() {
-  const detailPage = document.getElementById("detailPage");
-  const gameGrid = document.getElementById("gameGrid");
-  if (detailPage && gameGrid) {
-    detailPage.style.display = "none";
-    gameGrid.style.display = "grid"; // Sesuaikan dengan display style yang digunakan di CSS
-  }
-}
-
 function addToCartFromDetail() {
   const game = JSON.parse(localStorage.getItem("currentGame"));
   if (game) {
