@@ -39,26 +39,79 @@
       <a href="index.html">BERANDA</a>
       <a href="about.html">TENTANG</a>
       <a href="contact.html">KONTAK</a>
-      <a href="shop.html">BELANJA</a>
     </nav>
 
     <section class="hero" id="hero">
       <h1>AZYREN</h1>
       <p>AYO MULAI PETUALANGAN TERBARU ANDA</p>
-      <button
-        onclick="window.location.href='shop.html'"
-        style="
-          padding: 10px 20px;
-          background: #007bff;
-          color: white;
-          border: none;
-          cursor: pointer;
-        "
-      >
-        Mulai Belanja
-      </button>
+      <div class="search-bar" id="searchBar">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Telusuri menurut game, item, dll..."
+        />
+        <select id="categorySelect">
+          <option value="all">Semua Kategori</option>
+          <option value="action">Aksi</option>
+          <option value="fantasy">Fantasi</option>
+        </select>
+        <button onclick="searchGame()" style="margin-left: 10px">Cari</button>
+      </div>
       <div class="dot-indicators" id="dotIndicators"></div>
     </section>
+
+    <section class="shop" id="shop">
+      <div class="game-grid" id="gameGrid"></div>
+      <div class="detail-page" id="detailPage" style="display: none">
+        <button
+          onclick="backToShop()"
+          class="btn-cart"
+          style="margin-bottom: 20px"
+        >
+          Kembali
+        </button>
+        <div class="detail-container">
+          <div class="detail-image">
+            <img id="detailImage" src="" alt="Detail Game" />
+          </div>
+          <div class="detail-info">
+            <h2 id="detailTitle"></h2>
+            <p id="detailDescription"></p>
+            <div class="detail-price">
+              <strong>Harga: Rp <span id="detailPrice"></span></strong>
+            </div>
+            <button class="add-cart-button" onclick="addToCartFromDetail()">
+              Tambah ke Keranjang
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div
+      id="toast"
+      style="
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: green;
+        color: #fff;
+        padding: 12px 20px;
+        border-radius: 8px;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        z-index: 9999;
+        pointer-events: none;
+      "
+    >
+      Item berhasil ditambahkan ke keranjang!
+    </div>
+
+    <footer>
+      <div class="container">
+        <p>© AZYREN</p>
+      </div>
+    </footer>
 
     <script src="script.js"></script>
   </body>

@@ -160,7 +160,7 @@ nav a {
   gap: 20px;
   justify-content: center;
   background: white;
-  padding: 20px;
+  padding: 60px;
 }
 
 .game-card {
@@ -469,7 +469,6 @@ footer {
   font-size: 14px;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 
-  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;

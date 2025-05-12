@@ -473,6 +473,13 @@ function init() {
   updateLoginStatus();
   if (
     window.location.pathname.includes("index.html") ||
+    window.location.pathname === "/" ||
+    window.location.pathname.includes("shop.html")
+  ) {
+    displayGames(); // Panggil displayGames untuk index.html dan shop.html
+  }
+  if (
+    window.location.pathname.includes("index.html") ||
     window.location.pathname === "/"
   ) {
     const heroSection = document.getElementById("hero");
@@ -505,8 +512,6 @@ function init() {
       updateDots();
       setInterval(changeBackground, 4000);
     }
-  } else if (window.location.pathname.includes("shop.html")) {
-    displayGames();
   } else if (window.location.pathname.includes("checkout.html")) {
     updateCartPage();
   } else if (window.location.pathname.includes("invoice.html")) {
