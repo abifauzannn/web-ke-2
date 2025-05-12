@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AZYREN - Checkout</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="logo web.jpg" alt="ZEUSX" />
+        AZYREN
+      </div>
+      <div class="buttons">
+        <button class="btn-cart" onclick="window.location.href='checkout.html'">
+          Keranjang
+        </button>
+        <button class="btn-login" onclick="window.location.href='login.html'">
+          Masuk
+        </button>
+        <button class="btn-logout" onclick="logout()" style="display: none">
+          Logout
+        </button>
+        <button
+          class="btn-register"
+          onclick="window.location.href='register.html'"
+        >
+          Daftar
+        </button>
+      </div>
+    </header>
+
+    <nav>
+      <a href="index.html">BERANDA</a>
+      <a href="about.html">TENTANG</a>
+      <a href="contact.html">KONTAK</a>
+      <a href="shop.html">BELANJA</a>
+    </nav>
+
+    <section class="cart-page" id="cartPage">
+      <h2>Keranjang Anda</h2>
+      <div id="cartItems"></div>
+      <div class="total" id="cartTotal">Total: Rp 0</div>
+      <select id="paymentMethod" style="padding: 8px; margin-top: 10px">
+        <option value="" disabled selected>Pilih Metode Pembayaran</option>
+        <option value="DANA">DANA</option>
+        <option value="GoPay">GoPay</option>
+        <option value="OVO">OVO</option>
+        <option value="ShopeePay">ShopeePay</option>
+      </select>
+      <br />
+      <button class="btn-checkout" onclick="checkout()">Checkout</button>
+      <button class="btn-checkout" onclick="window.location.href='shop.html'">
+        Kembali Belanja
+      </button>
+    </section>
+
+    <div
+      id="toast"
+      style="
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: green;
+        color: #fff;
+        padding: 12px 20px;
+        border-radius: 8px;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        z-index: 9999;
+        pointer-events: none;
+      "
+    >
+      Item berhasil ditambahkan ke keranjang!
+    </div>
+
+    <footer>
+      <div class="container">
+        <p>© AZYREN</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  </body>
+</html>

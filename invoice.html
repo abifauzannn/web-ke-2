@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AZYREN - Beranda</title>
+    <title>AZYREN - Struk Pembayaran</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
       rel="stylesheet"
@@ -42,23 +42,19 @@
       <a href="shop.html">BELANJA</a>
     </nav>
 
-    <section class="hero" id="hero">
-      <h1>AZYREN</h1>
-      <p>AYO MULAI PETUALANGAN TERBARU ANDA</p>
-      <button
-        onclick="window.location.href='shop.html'"
-        style="
-          padding: 10px 20px;
-          background: #007bff;
-          color: white;
-          border: none;
-          cursor: pointer;
-        "
-      >
-        Mulai Belanja
+    <section class="invoice" id="invoice">
+      <h2>Struk Pembayaran</h2>
+      <div id="receiptContent"></div>
+      <button class="btn-checkout" onclick="window.location.href='shop.html'">
+        Kembali Belanja
       </button>
-      <div class="dot-indicators" id="dotIndicators"></div>
     </section>
+
+    <footer>
+      <div class="container">
+        <p>© AZYREN</p>
+      </div>
+    </footer>
 
     <script src="script.js"></script>
   </body>

@@ -3,12 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AZYREN - Beranda</title>
+    <title>AZYREN - Kontak</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <style>
+      section {
+        padding: 30px;
+      }
+    </style>
   </head>
   <body>
     <header>
@@ -42,23 +47,24 @@
       <a href="shop.html">BELANJA</a>
     </nav>
 
-    <section class="hero" id="hero">
-      <h1>AZYREN</h1>
-      <p>AYO MULAI PETUALANGAN TERBARU ANDA</p>
-      <button
-        onclick="window.location.href='shop.html'"
-        style="
-          padding: 10px 20px;
-          background: #007bff;
-          color: white;
-          border: none;
-          cursor: pointer;
-        "
-      >
-        Mulai Belanja
-      </button>
-      <div class="dot-indicators" id="dotIndicators"></div>
+    <section class="contact">
+      <h2>Hubungi Kami</h2>
+      <p>
+        Jika Anda memiliki pertanyaan atau membutuhkan bantuan, silakan hubungi
+        kami melalui:
+      </p>
+      <ul>
+        <li>Email: support@azyren.com</li>
+        <li>Telepon: +62 123 456 7890</li>
+        <li>Alamat: Jl. Gaming No. 123, Jakarta, Indonesia</li>
+      </ul>
     </section>
+
+    <footer>
+      <div class="container">
+        <p>© AZYREN</p>
+      </div>
+    </footer>
 
     <script src="script.js"></script>
   </body>

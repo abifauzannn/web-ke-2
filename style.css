@@ -463,10 +463,15 @@ footer {
   background: white;
   color: black;
   border-top: 2px solid white;
-  border-bottom: 2px solid #ccc; /* Tambahan: garis bawah abu-abu */
+  border-bottom: 2px solid #ccc;
   text-align: center;
-  padding: 20px 0;
   font-size: 14px;
-  position: relative; /* Tambahan: berguna jika nanti ingin diatur posisi */
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Tambahan: bayangan atas */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30px; /* Atur tinggi sesuai kebutuhan */
+  padding-bottom: 15px;
 }

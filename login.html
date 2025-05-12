@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AZYREN - Login</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <style>
+    .login {
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 30px;
+      background: #f9f9f9;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+
+    .login h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .login input[type="email"],
+    .login input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+
+    .login button {
+      width: 100%;
+      padding: 12px;
+      background-color: black;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .login button:hover {
+      background-color: #0056b3;
+    }
+
+    .login p {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .login a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .login a:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="logo web.jpg" alt="ZEUSX" />
+        AZYREN
+      </div>
+      <div class="buttons">
+        <button class="btn-cart" onclick="window.location.href='checkout.html'">
+          Keranjang
+        </button>
+        <button class="btn-login" onclick="window.location.href='login.html'">
+          Masuk
+        </button>
+        <button class="btn-logout" onclick="logout()" style="display: none">
+          Logout
+        </button>
+        <button
+          class="btn-login"
+          onclick="window.location.href='register.html'"
+        >
+          Daftar
+        </button>
+      </div>
+    </header>
+
+    <nav>
+      <a href="index.html">BERANDA</a>
+      <a href="about.html">TENTANG</a>
+      <a href="contact.html">KONTAK</a>
+      <a href="shop.html">BELANJA</a>
+    </nav>
+
+    <section class="login">
+      <h2>Login</h2>
+      <input type="email" placeholder="Masukkan Gmail" id="emailInput" />
+      <input
+        type="password"
+        placeholder="Masukkan Password"
+        id="passwordInput"
+      />
+      <button onclick="login()">Masuk</button>
+      <p>Belum punya akun? <a href="register.html">Daftar di sini</a></p>
+    </section>
+
+    <footer>
+      <div class="container">
+        <p>© AZYREN</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
